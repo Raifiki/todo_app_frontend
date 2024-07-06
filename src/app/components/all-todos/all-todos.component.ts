@@ -27,8 +27,8 @@ export class AllTodosComponent {
 
   loadTodos(){
     let url = environment.baseUrl + "/todos/";
-    let header = new HttpHeaders();
-    header = header.set('Authorization','Token ' + localStorage.getItem('token'))
-    return lastValueFrom(this.http.get(url, {headers: header}));
+    //let header = new HttpHeaders();
+    //header = header.set('Authorization','Token ' + localStorage.getItem('token'))
+    return lastValueFrom(this.http.get(url));
   }
 }
