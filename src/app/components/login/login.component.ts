@@ -25,8 +25,8 @@ export class LoginComponent {
   async login(form:NgForm){
     this.disableIpt = true;
     try {
-      let resp = await this.authService.loginWithUsernameAndPassword(this.username,this.password);
-      console.log(resp)
+      let resp:any = await this.authService.loginWithUsernameAndPassword(this.username,this.password);
+      localStorage.setItem('token', resp.token) 
       this.router.navigateByUrl('/todos')
     } catch (error) {
       console.log(error);

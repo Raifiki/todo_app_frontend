@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { environment } from '../../../../environment/einvironment';
 import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
@@ -16,12 +16,19 @@ export class AllTodosComponent {
   constructor(private http: HttpClient){}
 
   async ngOnInit(){
-    this.todos = await this.loadTodos();
-    console.log(this.todos);
+    try {
+      this.todos = await this.loadTodos();
+      console.log(this.todos);
+    } catch (error) {
+      console.log(error);
+      
+    }
   }
 
   loadTodos(){
     let url = environment.baseUrl + "/todos/";
-    return lastValueFrom(this.http.get(url));
+    let header = new HttpHeaders();
+    header = header.set('Authorization','Token ' + localStorage.getItem('token'))
+    return lastValueFrom(this.http.get(url, {headers: header}));
   }
 }
