@@ -3,4 +3,7 @@ form{
     flex-direction: column;
     gap: 8px;
     width: 300px;
+    > input:disabled{
+        background-color: rgba($color: black, $alpha: 0.1);
+    }
 }
