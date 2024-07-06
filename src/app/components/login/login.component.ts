@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,14 +20,14 @@ export class LoginComponent {
 
   authService = inject(AuthService);
 
-  constructor(){}
+  constructor(private router:Router){}
 
   async login(form:NgForm){
     this.disableIpt = true;
     try {
       let resp = await this.authService.loginWithUsernameAndPassword(this.username,this.password);
       console.log(resp)
-      // ToDo Redirect
+      this.router.navigateByUrl('/todos')
     } catch (error) {
       console.log(error);
     }
