@@ -1,0 +1,7 @@
+<form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+    <label for="ipt-email">E-Mail:</label>
+    <input type="email" name="email" id="ipt-email" [(ngModel)] = 'email' required>
+    <label for="ipt-password">Password:</label>
+    <input type="password" name="password" id="ipt-password" [(ngModel)] = 'password' required>
+    <button>Login</button>
+</form>
